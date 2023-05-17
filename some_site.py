@@ -1,6 +1,5 @@
 import os
 from io import BytesIO
-
 from flask import Flask, render_template, request, redirect, url_for
 import numpy as np
 import cv2
@@ -19,37 +18,34 @@ def upload():
     # получаем файл из запроса
     file = request.files['image']
     if file is not None:
-        pass
+        # читаем изображение с помощью OpenCV
+        img = Image.open(BytesIO(file.read()))
+        img.save(os.path.join(app.root_path, 'static', 'original.png'))
+        return redirect(url_for('calculus'))
     else:
         return "didn't open the file"
-    # читаем изображение с помощью OpenCV
-    img = Image.open(BytesIO(file.read()))
-    img.save(os.path.join(app.root_path, 'static', 'original.png'))
-    return redirect(url_for('calculus'))
 
 
-@app.route('/calculus', methods=['POST'])
+@app.route('/calculus', methods=['GET', 'POST'])
 def calculus():
+    if 'number-input' not in request.form:
+        return "Number input field not found"
     # Get the value of the number input field
     angle = int(request.form['number-input'])
-    # Load the image
+    # get the image
     img_path = os.path.join(app.root_path, 'static', 'original.png')
     img = Image.open(img_path)
     # Rotate the image
+    # Rotate the image
     rotated = img.rotate(angle)
-    #(h, w) = img.shape[:2]
-    #center = (w / 2, h / 2)
+    fixed_width = 500
+    width_percent = (fixed_width / float(img.size[0]))
+    height_size = int((float(img.size[1]) * float(width_percent)))
+    # Resize the image with the new size
+    new_size = (fixed_width, height_size)
+    rotated = rotated.resize(new_size)
     rotated.save(os.path.join(app.root_path, 'static', 'answer.png'))
-    #m = cv2.getRotationMatrix2D(center, angle, 1.0)
-    #rotated = cv2.warpAffine(img, m, (w, h))
-    #cv2.imwrite('static/rotated.jpg', rotated)
-    return redirect(url_for('results'))
-
-
-@app.route('/results')
-def results():
-    photo_url = url_for('static', filename='rotated.png')
-    return render_template('result.html', photo_url=photo_url)
+    return render_template('result.html', image_name='answer.png')
 
 
 if __name__ == '__main__':
