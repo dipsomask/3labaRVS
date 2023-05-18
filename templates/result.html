@@ -4,7 +4,23 @@
         <title>Result</title>
     </head>
     <body>
+        <h1>Start Image</h1>
+        <br>
+        <br>
+        <img src="{{ url_for('static', filename=image_mame4) }}">
+        <br>
+        <br>
         <h1>Rotated Image</h1>
         <img src="{{ url_for('static', filename=image_name) }}">
+        <br>
+        <br>
+        <h1>Start Image Graph</h1>
+        <img src="{{ url_for('static', filename=image_name2) }}">
+        <br>
+        <br>
+        <h1>Rotated Image Graph</h1>
+        <img src="{{ url_for('static', filename=image_name3) }}">
+        <br>
+        <br>
     </body>
 </html>

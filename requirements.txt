@@ -2,3 +2,7 @@ Flask~=2.3.2
 numpy~=1.24.3
 opencv-python~=4.7.0.72
 Pillow~=9.5.0
+matplotlib~=3.7.1
+pandas~=2.0.1
+Django~=4.2.1
+captcha~=0.4
