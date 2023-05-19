@@ -10,25 +10,6 @@ from captcha.image import ImageCaptcha
 app = Flask(__name__)
 
 
-# generate a random string for the captcha
-def generate_captcha_text(length=5):
-    captcha_text = 'skjdhgkjsdhgk'
-    for i in range(length):
-        import random
-        captcha_text += random.choice('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
-    return captcha_text
-
-
-# create the captcha image and return the HTML code
-def create_captcha():
-    captcha_text = generate_captcha_text()
-    image = ImageCaptcha().generate(captcha_text)
-    image_data = image.getvalue()
-    html = '<img src="data:image/png;base64,' + str(image_data, 'utf-8') + '">'
-    html += '<input type="text" name="captcha">'
-    return captcha_text, html
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
