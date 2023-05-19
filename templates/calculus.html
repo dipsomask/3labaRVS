@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculus</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <h1>Start Image</h1>
     <form action="{{ url_for('calculus') }}" method="post" enctype="multipart/form-data">
         {% if image_name %}
-        <h1>Rotated Image</h1>
         <img src="{{ url_for('static', filename=image_name) }}" alt="Start Image">
     {% endif %}
     </form>
@@ -18,10 +16,9 @@
     <form action="{{ url_for('calculus') }}" method="post" enctype="multipart/form-data">
         <label for="number-input">Enter Angle:</label>
         <input type="number" id="number-input" name="number-input"><br><br>
+        <script src="https://www.google.com/recaptcha/enterprise.js?render=6Ld9IR8mAAAAAJf5-EQ8r5vh_2YurzpcF6RCwS9A"></script>
         <input type="submit" value="Submit">
     </form>
-    <br><br>
-    <div class="g-recaptcha" data-sitekey="6Ldu_gEmAAAAALdiVGYlprs7UUDuiijhUlf94f0B"></div>
     <br><br>
 </body>
 </html>

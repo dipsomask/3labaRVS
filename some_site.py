@@ -5,7 +5,6 @@ from flask import Flask, render_template, request, redirect, url_for
 import numpy as np
 import pandas as pd
 from PIL import Image
-from captcha.image import ImageCaptcha
 
 app = Flask(__name__)
 
