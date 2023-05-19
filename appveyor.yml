@@ -1,7 +1,6 @@
 version: 1.0.{build}
 image:
 - Visual Studio 2019
-- Ubuntu
 environment:
   matrix:
   - PYTHON: "C:\\Python311"
