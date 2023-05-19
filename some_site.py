@@ -64,7 +64,10 @@ def calculus():
     color_distribution.columns.name = 'Color Channel'
 
     # Save the color distribution plot as a PNG image
-    color_distribution.plot(kind='bar', stacked=True, figsize=(5, 5)).get_figure().savefig('static/firstgraf.png')
+    ax = color_distribution.plot(kind='bar', stacked=True, figsize=(20, 5))
+    ax.set_xticklabels([])
+    ax.get_figure().savefig('static/firstgraf.png')
+
     imggraph_path = os.path.join(app.root_path, 'static', 'firstgraf.png')
     imggraph = Image.open(imggraph_path)
     resizeimg(imggraph)
@@ -95,7 +98,10 @@ def calculus():
     color_distribution.columns.name = 'Color Channel'
 
     # Save the color distribution plot as a PNG image
-    color_distribution.plot(kind='bar', stacked=True, figsize=(5, 5)).get_figure().savefig('static/secondgraph.png')
+    ax = color_distribution.plot(kind='bar', stacked=True, figsize=(20, 5))
+    ax.set_xticklabels([])
+    ax.get_figure().savefig('static/secondgraph.png')
+
     imggraph_path = os.path.join(app.root_path, 'static', 'secondgraph.png')
     imggraph = Image.open(imggraph_path)
     resizeimg(imggraph)
